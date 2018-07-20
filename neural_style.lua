@@ -31,7 +31,11 @@ cmd:option('-learning_rate', 1e1)
 cmd:option('-lbfgs_num_correction', 0)
 
 -- Output options
+<<<<<<< HEAD
 cmd:option('-print_iter', 1)
+=======
+cmd:option('-print_iter', 50)
+>>>>>>> 07c4b8299f8fbdafec0c514fc820ff1d7ff62e46
 cmd:option('-save_iter', 100)
 cmd:option('-output_image', 'out.png')
 
@@ -54,9 +58,13 @@ local function main(params)
 
   local loadcaffe_backend = params.backend
   if params.backend == 'clnn' then loadcaffe_backend = 'nn' end
+<<<<<<< HEAD
   print("hihihihihi")
   local cnn = loadcaffe.load(params.proto_file, params.model_file, loadcaffe_backend):type(dtype)
  -- local cnn = loadcaffe.load('models/train_val.prototxt','models/nin_imagenet.caffemodel','nn'):type(dtype)
+=======
+  local cnn = loadcaffe.load(params.proto_file, params.model_file, loadcaffe_backend):type(dtype)
+>>>>>>> 07c4b8299f8fbdafec0c514fc820ff1d7ff62e46
 
   local content_image = image.load(params.content_image, 3)
   content_image = image.scale(content_image, params.image_size, 'bilinear')

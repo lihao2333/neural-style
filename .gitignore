@@ -1,2 +1,12 @@
 *.swp
+<<<<<<< HEAD
 *.pyc
+=======
+out*.png
+*.png
+*.jpg
+*.prototxt*
+*.caffemodel
+models/
+!models/download_models.sh
+>>>>>>> 07c4b8299f8fbdafec0c514fc820ff1d7ff62e46
