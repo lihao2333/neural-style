@@ -59,8 +59,8 @@ local function main(params)
   print("ahihihihihi")
   --local cnn = loadcaffe.load(params.proto_file, params.model_file, loadcaffe_backend):type(dtype)
  -- local cnn = loadcaffe.load('models/train_val.prototxt','models/nin_imagenet.caffemodel','nn'):type(dtype)
-  --local cnn = loadcaffe.load('models/VGG_ILSVRC_19_layers_deploy.prototxt','models/VGG_ILSVRC_19_layers.caffemodel','nn'):type(dtype)
-  local cnn = loadcaffe.load('models/VGG_ILSVRC_16_layers_deploy.prototxt','models/VGG_ILSVRC_16_layers.caffemodel','nn'):type(dtype)
+  local cnn = loadcaffe.load('models/VGG_ILSVRC_19_layers_deploy.prototxt','models/VGG_ILSVRC_19_layers.caffemodel','nn'):type(dtype)
+ -- local cnn = loadcaffe.load('models/VGG_ILSVRC_16_layers_deploy.prototxt','models/VGG_ILSVRC_16_layers.caffemodel','nn'):type(dtype)
 
   local content_image = image.load(params.content_image, 3)
   content_image = image.scale(content_image, params.image_size, 'bilinear')
@@ -268,6 +268,8 @@ local function main(params)
       if t == params.num_iterations then
         filename = params.output_image
       end
+      temp_shape = disp:size()
+      disp = image.scale(disp,params.image_size,math.floor(temp_shape[2]/2)*2,'bilinear')
 
       -- Maybe perform postprocessing for color-independent style transfer
       if params.original_colors == 1 then
