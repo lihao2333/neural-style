@@ -22,20 +22,16 @@ cmd:option('-multigpu_strategy', '', 'Index of layers to split the network acros
 cmd:option('-content_weight', 5e0)
 cmd:option('-style_weight', 1e2)
 cmd:option('-tv_weight', 1e-3)
-cmd:option('-num_iterations', 1000)
+cmd:option('-num_iterations', 2000)
 cmd:option('-normalize_gradients', false)
-cmd:option('-init', 'random', 'random|image')
+cmd:option('-init', 'image', 'random|image')
 cmd:option('-init_image', '')
 cmd:option('-optimizer', 'lbfgs', 'lbfgs|adam')
 cmd:option('-learning_rate', 1e1)
 cmd:option('-lbfgs_num_correction', 0)
 
 -- Output options
-<<<<<<< HEAD
 cmd:option('-print_iter', 1)
-=======
-cmd:option('-print_iter', 50)
->>>>>>> 07c4b8299f8fbdafec0c514fc820ff1d7ff62e46
 cmd:option('-save_iter', 100)
 cmd:option('-output_image', 'out.png')
 
@@ -51,6 +47,8 @@ cmd:option('-seed', -1)
 
 cmd:option('-content_layers', 'relu4_2', 'layers for content')
 cmd:option('-style_layers', 'relu1_1,relu2_1,relu3_1,relu4_1,relu5_1', 'layers for style')
+--cmd:option('-content_layers', 'relu3_2', 'layers for content')
+--cmd:option('-style_layers', 'relu1_1,relu2_1,relu3_1,relu4_1', 'layers for style')
 
 
 local function main(params)
@@ -58,13 +56,11 @@ local function main(params)
 
   local loadcaffe_backend = params.backend
   if params.backend == 'clnn' then loadcaffe_backend = 'nn' end
-<<<<<<< HEAD
-  print("hihihihihi")
-  local cnn = loadcaffe.load(params.proto_file, params.model_file, loadcaffe_backend):type(dtype)
+  print("ahihihihihi")
+  --local cnn = loadcaffe.load(params.proto_file, params.model_file, loadcaffe_backend):type(dtype)
  -- local cnn = loadcaffe.load('models/train_val.prototxt','models/nin_imagenet.caffemodel','nn'):type(dtype)
-=======
-  local cnn = loadcaffe.load(params.proto_file, params.model_file, loadcaffe_backend):type(dtype)
->>>>>>> 07c4b8299f8fbdafec0c514fc820ff1d7ff62e46
+  --local cnn = loadcaffe.load('models/VGG_ILSVRC_19_layers_deploy.prototxt','models/VGG_ILSVRC_19_layers.caffemodel','nn'):type(dtype)
+  local cnn = loadcaffe.load('models/VGG_ILSVRC_16_layers_deploy.prototxt','models/VGG_ILSVRC_16_layers.caffemodel','nn'):type(dtype)
 
   local content_image = image.load(params.content_image, 3)
   content_image = image.scale(content_image, params.image_size, 'bilinear')

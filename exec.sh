@@ -27,3 +27,14 @@ run2()
          /bin/bash
 
 }
+run3()
+{
+       nvidia-docker run -it --rm \
+         -v `pwd`:/workspace\
+         -v /Model:/Model\
+         -v /Dataset:/Dataset\
+         -w /workspace\
+         lihao2333/superintel:1.0\
+         /bin/bash
+
+}
